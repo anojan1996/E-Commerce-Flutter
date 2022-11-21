@@ -10,9 +10,18 @@ class SignUp extends StatefulWidget {
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
 class _SignUpState extends State<SignUp> {
+  void validation() {
+    final FormState? _form = _formKey.currentState;
+    if (_form!.validate()) {
+      print('yes');
+    }
+    print('no');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Form(
           key: _formKey,
@@ -46,6 +55,16 @@ class _SignUpState extends State<SignUp> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       TextFormField(
+                        validator: (value) {
+                          if (value == "") {
+                            return "Please fill username";
+                          }
+                          return null;
+                          // elseif(value.length < 6){
+                          //   return "Please fill username";
+                          // }
+                          // return "";
+                        },
                         decoration: InputDecoration(
                           hintText: 'User Name',
                           border: const OutlineInputBorder(),
@@ -53,6 +72,16 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       TextFormField(
+                        validator: (value) {
+                          if (value == "") {
+                            return "Please fill Email";
+                          }
+                          return null;
+                          // elseif(value.length < 6){
+                          //   return "Please fill username";
+                          // }
+                          // return "";
+                        },
                         decoration: InputDecoration(
                           hintText: 'Email',
                           border: const OutlineInputBorder(),
@@ -60,6 +89,17 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       TextFormField(
+                        obscureText: true,
+                        validator: (value) {
+                          if (value == "") {
+                            return "Please fill password";
+                          }
+                          return null;
+                          // elseif(value.length < 6){
+                          //   return "Please fill username";
+                          // }
+                          // return "";
+                        },
                         decoration: InputDecoration(
                           hintText: 'Password',
                           suffixIcon: GestureDetector(
@@ -76,17 +116,18 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       TextFormField(
+                        validator: (value) {
+                          if (value == "") {
+                            return "Please fill phone number";
+                          }
+                          return null;
+                          // elseif(value.length < 6){
+                          //   return "Please fill username";
+                          // }
+                          // return "";
+                        },
                         decoration: InputDecoration(
                           hintText: 'Phone Number',
-                          suffixIcon: GestureDetector(
-                            onTap: (() {
-                              FocusScope.of(context).unfocus();
-                            }),
-                            child: Icon(
-                              Icons.visibility,
-                              color: Colors.black,
-                            ),
-                          ),
                           border: const OutlineInputBorder(),
                           hintStyle: TextStyle(color: Colors.black),
                         ),
@@ -95,7 +136,9 @@ class _SignUpState extends State<SignUp> {
                         height: 40,
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            validation();
+                          },
                           child: Text('Register'),
                         ),
                       ),
