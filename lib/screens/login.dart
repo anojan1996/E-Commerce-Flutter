@@ -1,16 +1,16 @@
-import 'package:e_commerce/screens/login.dart';
+import 'package:e_commerce/screens/signUp.dart';
 import 'package:flutter/material.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<Login> createState() => _LoginState();
 }
 
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-class _SignUpState extends State<SignUp> {
+class _LoginState extends State<Login> {
   bool obscure = true;
   void validation() {
     final FormState? _form = _formKey.currentState;
@@ -37,7 +37,7 @@ class _SignUpState extends State<SignUp> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       const Text(
-                        'Register',
+                        'Login',
                         style: TextStyle(
                           fontSize: 50,
                           fontWeight: FontWeight.bold,
@@ -56,23 +56,6 @@ class _SignUpState extends State<SignUp> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      TextFormField(
-                        validator: (value) {
-                          if (value == "") {
-                            return "Please fill username";
-                          }
-                          return null;
-                          // elseif(value.length < 6){
-                          //   return "Please fill username";
-                          // }
-                          // return "";
-                        },
-                        decoration: InputDecoration(
-                          hintText: 'User Name',
-                          border: const OutlineInputBorder(),
-                          hintStyle: TextStyle(color: Colors.black),
-                        ),
-                      ),
                       TextFormField(
                         validator: (value) {
                           if (value == "") {
@@ -120,23 +103,6 @@ class _SignUpState extends State<SignUp> {
                           hintStyle: TextStyle(color: Colors.black),
                         ),
                       ),
-                      TextFormField(
-                        validator: (value) {
-                          if (value == "") {
-                            return "Please fill phone number";
-                          }
-                          return null;
-                          // elseif(value.length < 6){
-                          //   return "Please fill username";
-                          // }
-                          // return "";
-                        },
-                        decoration: InputDecoration(
-                          hintText: 'Phone Number',
-                          border: const OutlineInputBorder(),
-                          hintStyle: TextStyle(color: Colors.black),
-                        ),
-                      ),
                       Container(
                         height: 40,
                         width: double.infinity,
@@ -144,22 +110,24 @@ class _SignUpState extends State<SignUp> {
                           onPressed: () {
                             validation();
                           },
-                          child: Text('Register'),
+                          child: Text('Login'),
                         ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
-                          Text('I have already an account!'),
+                          Text('I have not an account!'),
                           // SizedBox(width: 20,),
                           GestureDetector(
-                            onTap: () => Navigator.of(context).pushReplacement(
+                            onTap: () {
+                              Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (ctx) => Login(),
+                          builder: (ctx) => SignUp(),
                         ),
-                      ),
+                      );
+                            },
                             child: const Text(
-                              'Login',
+                              'Register',
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
