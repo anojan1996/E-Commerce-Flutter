@@ -1,5 +1,8 @@
 import 'package:e_commerce/screens/login.dart';
+import 'package:e_commerce/widgets/button.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/changeScreen.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -137,38 +140,17 @@ class _SignUpState extends State<SignUp> {
                           hintStyle: TextStyle(color: Colors.black),
                         ),
                       ),
-                      Container(
-                        height: 40,
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            validation();
-                          },
-                          child: Text('Register'),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Text('I have already an account!'),
-                          // SizedBox(width: 20,),
-                          GestureDetector(
-                            onTap: () => Navigator.of(context).pushReplacement(
+                      Button(name: 'Register', onpressed: validation),
+                       ChangeScreen(
+                      ontap: (() {
+                          Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (ctx) => Login(),
                         ),
-                      ),
-                            child: const Text(
-                              'Login',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.cyan,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
+                      );
+                      }), 
+                     name: 'I have an account!',
+                      account: 'Login')
                     ],
                   ),
                 )

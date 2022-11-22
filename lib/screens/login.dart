@@ -1,4 +1,6 @@
 import 'package:e_commerce/screens/signUp.dart';
+import 'package:e_commerce/widgets/button.dart';
+import 'package:e_commerce/widgets/changeScreen.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -103,40 +105,17 @@ class _LoginState extends State<Login> {
                           hintStyle: TextStyle(color: Colors.black),
                         ),
                       ),
-                      Container(
-                        height: 40,
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            validation();
-                          },
-                          child: Text('Login'),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Text('I have not an account!'),
-                          // SizedBox(width: 20,),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushReplacement(
+                     Button(name: 'Login', onpressed: validation),
+                     ChangeScreen(
+                      ontap: (() {
+                          Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (ctx) => SignUp(),
                         ),
                       );
-                            },
-                            child: const Text(
-                              'Register',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.cyan,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
+                      }), 
+                     name: 'I have not an account!',
+                      account: 'Register')
                     ],
                   ),
                 )
